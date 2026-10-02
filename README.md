@@ -8,7 +8,7 @@ Run `python3 -m http.server 8080` in this directory and open http://localhost:80
 
 ## GitHub Pages
 
-The included workflow deploys the static site on pushes to `main`. Set **Settings → Pages → Source** to **GitHub Actions**. The public address will be https://chrisft25.github.io/nozomi-website/ .
+The included workflow deploys the static site on pushes to `main`. Set **Settings → Pages → Source** to **GitHub Actions**. The public address will be https://chrisft25.github.io/nozomi-consulting/ .
 
 ## Editing
 
