@@ -52,3 +52,23 @@ document.querySelector('.brand').addEventListener('click', () => {
   if (logoClicks === 5) { document.body.classList.toggle('cat-mode'); document.querySelector('.hero-scribble').textContent = document.body.classList.contains('cat-mode') ? 'sudo make-me-a-cat' : 'Yes, she’s in charge.'; logoClicks = 0; }
 });
 document.querySelector('#year').textContent = new Date().getFullYear();
+
+const contactModal = document.querySelector('#contact-modal');
+let contactTrigger;
+document.querySelectorAll('[data-contact]').forEach(button => button.addEventListener('click', () => {
+  contactTrigger = button;
+  closeMenu();
+  contactModal.showModal();
+  document.body.classList.add('modal-open');
+}));
+function dismissContact() { contactModal.close(); }
+contactModal.querySelectorAll('.modal-close, .modal-dismiss').forEach(button => button.addEventListener('click', dismissContact));
+contactModal.addEventListener('click', event => {
+  const bounds = contactModal.getBoundingClientRect();
+  if (event.target === contactModal && (event.clientX < bounds.left || event.clientX > bounds.right || event.clientY < bounds.top || event.clientY > bounds.bottom)) dismissContact();
+});
+contactModal.addEventListener('close', () => {
+  document.body.classList.remove('modal-open');
+  if (contactTrigger === navigation.querySelector('[data-contact]') && !navigation.classList.contains('open') && window.getComputedStyle(menu).display !== 'none') menu.focus();
+  else contactTrigger?.focus();
+});
